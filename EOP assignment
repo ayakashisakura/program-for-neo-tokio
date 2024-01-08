@@ -1,0 +1,86 @@
+package eopassignmentneotokio;
+
+/**
+ *
+ * @author Fasha Syed
+ */
+import java.util.Scanner;
+public class EOPAssignmentNeoTokio {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String nickname;
+        int[] OrderID=new int[4];
+        int[] ItemCode=new int[100];
+        Scanner input=new Scanner(System.in);
+        System.out.println("enter nickname: ");
+        nickname=input.next(); 
+        System.out.println("Hello "+nickname+"!");
+        
+        System.out.println("this is your order ID: ");
+        DisplayOrderID(OrderID);
+        DisplayMenu();
+        ReadOrder(ItemCode);
+        
+        
+        
+        
+    }
+    public static void DisplayMenu(){
+        System.out.println("+++ coffee based +++");
+        System.out.println("item code \t item \t\t price(myr) ");
+        System.out.println("001 \t\t espresso \t\t 7");
+        System.out.println("002 \t\t americano \t\t 8");
+        System.out.println("003 \t\t cappucino \t\t 9");
+        System.out.println("004 \t\t affogato \t\t 10");
+        System.out.println("005 \t\t white vienna \t\t 10");
+        System.out.println("006 \t\t turkish coffee \t 10");
+        System.out.println("007 \t\t vietnamese coffee \t 8");
+        System.out.println();
+        System.out.println("+++ non-coffee based +++");
+        System.out.println("item code \t item \t\t price(myr) ");
+        System.out.println("011 \t\t matcha latte \t\t 11");
+        System.out.println("012 \t\t genmaicha latte \t 12");
+        System.out.println("013 \t\t coconut coffee \t 10");
+        System.out.println("014 \t\t rose latte \t\t 12");
+        System.out.println("015 \t\t jasmine latte \t\t 12");
+        System.out.println("016 \t\t chai latte \t\t 12");
+        System.out.println("017 \t\t hot coco \t\t 8");
+        System.out.println("018 \t\t white choclate latte \t 12");
+    }
+    public static void DisplayOrderID(int[] ID){
+        for(int i=0;i<4;i++){
+            ID[i]=(int)(Math.random()*10)-0;
+            System.out.print(ID[i]);
+        }
+        System.out.println();
+    }
+    public static void OrderMenu(int ItemCode){
+        double price = 0;
+        switch(ItemCode){
+            case 1 -> price=7.00;
+            case 2, 7, 17 -> price=8.00;
+            case 3 -> price=9.00;
+            case 4, 5, 6, 13 -> price=10.00;
+            case 11 -> price=11.00;
+            case 12, 14, 15, 16, 18 -> price=12.00;
+                    
+        }
+        System.out.printf("price for item %d is %.2f\n", ItemCode,price);
+    
+    }
+    public static void ReadOrder(int[] code){
+        
+        Scanner input = new Scanner(System.in);
+   
+        System.out.println("enter item code of the item you would like to purchase: ");
+        for(int i=0;i<code.length;i++){
+            code[i]=input.nextInt();
+            OrderMenu(code[i]);
+        }
+    }
+    
+}
