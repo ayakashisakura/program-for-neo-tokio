@@ -20,8 +20,10 @@ public class EOPAssignmentNeoTokio {
         nickname=input.next(); 
         System.out.println("Hello "+nickname+"!");
         
-        System.out.println("this is your order ID: ");
+        System.out.print("this is your order ID: ");
         DisplayOrderID(OrderID);
+        System.out.println();
+        System.out.println("MENU");
         DisplayMenu();
         ReadOrder(ItemCode);
         
@@ -30,7 +32,7 @@ public class EOPAssignmentNeoTokio {
         
     }
     public static void DisplayMenu(){
-        System.out.println("+++ coffee based +++");
+        System.out.println("+++ coffees +++");
         System.out.println("item code \t item \t\t price(myr) ");
         System.out.println("001 \t\t espresso \t\t 7");
         System.out.println("002 \t\t americano \t\t 8");
@@ -40,7 +42,7 @@ public class EOPAssignmentNeoTokio {
         System.out.println("006 \t\t turkish coffee \t 10");
         System.out.println("007 \t\t vietnamese coffee \t 8");
         System.out.println();
-        System.out.println("+++ non-coffee based +++");
+        System.out.println("+++ non-coffees +++");
         System.out.println("item code \t item \t\t price(myr) ");
         System.out.println("011 \t\t matcha latte \t\t 11");
         System.out.println("012 \t\t genmaicha latte \t 12");
@@ -50,6 +52,38 @@ public class EOPAssignmentNeoTokio {
         System.out.println("016 \t\t chai latte \t\t 12");
         System.out.println("017 \t\t hot coco \t\t 8");
         System.out.println("018 \t\t white choclate latte \t 12");
+        System.out.println();
+        System.out.println("+++ teas +++");
+        System.out.println("item code \t item \t\t price(myr) ");
+        System.out.println("021 \t\t green tea \t\t 5");
+        System.out.println("022 \t\t genmaicha tea \t\t 6");
+        System.out.println("023 \t\t darjeeling tea \t 6");
+        System.out.println("024 \t\t earl grey tea \t\t 5");
+        System.out.println("025 \t\t englis breakfast tea \t 5");
+        System.out.println("026 \t\t chamomile tea \t\t 5");
+        System.out.println("027 \t\t jasmine tea \t\t 6");
+        System.out.println("028 \t\t hibiscus tea \t\t 7");
+        System.out.println("029 \t\t white peony tea \t 7");
+        System.out.println();
+        System.out.println("+++ add-ons +++");
+        System.out.println("item code \t item \t\t price(myr) ");
+        System.out.println("101 \t\t hazelnut syrup \t 2");
+        System.out.println("102 \t\t vanilla syrup \t\t 2");
+        System.out.println("103 \t\t mint syrup \t\t 2");
+        System.out.println("104 \t\t toffee nut syrup \t 2");
+        System.out.println("105 \t\t maple syrup \t\t 2");
+        System.out.println("106 \t\t lavender syrup \t 2");
+        System.out.println("107 \t\t caramel syrup \t\t 2");
+        System.out.println("108 \t\t almond syrup \t\t 2");
+        System.out.println("109 \t\t pistachio syrup \t 2");
+        System.out.println("110 \t\t rose syrup \t\t 2");
+        System.out.println("111 \t\t cinnamon dust \t\t 1");
+        System.out.println("112 \t\t extra espresso shot \t 2");
+        System.out.println("113 \t\t whipped cream \t\t 2");
+        System.out.println("114 \t\t lemon zest \t\t 2");
+        System.out.println("115 \t\t dried mint leaves \t 1");
+        System.out.println();
+        
     }
     public static void DisplayOrderID(int[] ID){
         for(int i=0;i<4;i++){
