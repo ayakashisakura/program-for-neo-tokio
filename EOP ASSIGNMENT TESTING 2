@@ -1,0 +1,196 @@
+import java.util.Scanner;
+//import java.util.Arrays;
+public class TestingEOPAssignmentOne {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // only methods in main
+        
+        EnterNickname();
+        DisplayMenu();
+        
+        double totalOrderPrice=ChooseAndDisplayDrinks();
+        
+        if(totalOrderPrice!=0.0){
+            ProceedToCounter();
+        }
+        else{
+            ExitOrderSystem();
+        }
+        
+    }
+    
+    public static void EnterNickname(){
+        Scanner input = new Scanner (System.in);
+        System.out.printf("Enter Your Nickname: ");
+        String nickname = input.next();
+        
+        System.out.println();
+        System.out.println("   --------------------------------------------------    ");
+        System.out.println("   |      Hi " + nickname + ", Welcome To NEO-TOKIO CAFE!       |   ");
+        System.out.println("   |   We Are a Coffee and Drinks Specialist Cafe   |   ");
+        System.out.println("   |      What Would You Like to Order Today?       |   ");
+        System.out.println("   --------------------------------------------------    ");
+        System.out.println();
+    }
+    
+    public static void DisplayMenu(){
+        System.out.println("              Here is Your Order Number:");
+        System.out.println("                         " + GenerateOrderID(100, 999));
+        System.out.println();
+        System.out.println("------------- Welcome To NEO-TOKIO CAFE ---------------");
+        System.out.println("------------------------ MENU -------------------------");
+        System.out.println("|   [CODE]   [DRINKS]                     [PRICE]     |");
+        System.out.println("|   COF01    ESPRESSO                       RM7       |");
+        System.out.println("|   COF02    AMERICANO                      RM8       |");
+        System.out.println("|   COF03    LATTE                          RM9       |");
+        System.out.println("|   COF04    CAPPUCCINO                     RM9       |");
+        System.out.println("|   COF05    MOCHA                          RM9       |");
+        System.out.println("|   COF06    MACCHIATO                      RM9       |");
+        System.out.println("|   COF07    WHITE VIENNA                   RM10      |");
+        System.out.println("|   COF08    COCONUT COFFEE                 RM10      |");
+        System.out.println("|   COF09    MATCHA LATTE                   RM11      |");
+        System.out.println("|   COF10    CHAI LATTE                     RM12      |");
+        System.out.println("|   COF11    JASMINE LATTE                  RM12      |");
+        System.out.println("|   COF12    CHOCOLATE                      RM8       |");
+        System.out.println();        
+    }
+    
+    public static int GenerateOrderID(int x, int y) {
+        int OrderID = (int) (Math.random() * (y - x + 1) + x);
+        return OrderID;
+    }
+    
+    public static double ChooseAndDisplayDrinks(){
+        
+        String[][] drinkMenu = {
+            {"COF01", "ESPRESSO", "RM7"},
+            {"COF02", "AMERICANO", "RM8"},
+            {"COF03", "LATTE", "RM9"},
+            {"COF04", "CAPPUCCINO", "RM9"},
+            {"COF05", "MOCHA", "RM9"},
+            {"COF06", "MACHIATO", "RM9"},
+            {"COF07", "WHITE VIENNA", "RM10"},
+            {"COF08", "COCONUT COFFEE", "RM10"},
+            {"COF09", "MATCHA LATTE", "RM11"},
+            {"COF10", "CHAI LATTE", "RM12"},
+            {"COF11", "JASMINE LATTE", "RM12"},
+            {"COF12", "CHOCOLATE", "RM8"}
+        };
+        
+        Scanner input = new Scanner(System.in);
+        
+        int maxDrinks = 100; 
+
+        String[] selectedDrinks = new String[maxDrinks];
+        String[] selectedPrice = new String[maxDrinks];
+        boolean ordering = true;
+
+        
+        for (int i = 0; i < maxDrinks; i++) {
+            System.out.print("Enter drink code #" + (i + 1) + " (or type 'done' to finish): ");
+            String drinkCode = input.next();
+           
+            if (drinkCode.equalsIgnoreCase("done")) {
+                ordering = false;
+                break;
+            }
+            else{
+                String drinkName = findDrinkName(drinkMenu, drinkCode);
+                String drinkPrice = findDrinkPrice(drinkMenu, drinkCode);
+
+                if (drinkName != null && drinkPrice != null) {
+                    selectedDrinks[i] = drinkName;
+                    selectedPrice[i] = drinkPrice;
+                } 
+                else {
+                    System.out.println("Invalid drink code. Try again.");
+                    i--; 
+                }
+            }
+        }
+        
+        
+        double totalOrderPrice = 0.0;
+        
+        if(ordering = true){
+            
+            for (int i = 0; i < selectedDrinks.length; i++) {
+            if (selectedDrinks[i] != null) {
+                totalOrderPrice += Double.parseDouble(selectedPrice[i].substring(2));
+               }
+            }
+        
+
+            System.out.println();
+        
+            System.out.println("Your Selected Drinks:");
+            for (String drink : selectedDrinks) {
+            if (drink != null) {
+                System.out.println("----- " + drink + " -----");
+               }
+            }
+        
+            System.out.println();
+        
+            System.out.println("Price For Each Drinks:");
+            for (String price : selectedPrice) {
+                if (price != null) {
+                    System.out.println("----- " + price + " -----");
+               }
+            }
+            System.out.println();
+    
+            System.out.println("Your Total Order Price: RM" + totalOrderPrice);
+            System.out.println();
+        }
+        else{
+            totalOrderPrice=0.0;
+        }
+       return totalOrderPrice;
+    }
+    
+    public static String findDrinkName(String[][] drinkMenu, String drinkCode) {
+        for (int i = 0; i < drinkMenu.length; i++) {
+            if (drinkMenu[i][0].equals(drinkCode)) {
+                return drinkMenu[i][1];
+            }
+        }
+        return null; 
+    }
+    
+    public static String findDrinkPrice(String[][] drinkMenu, String drinkCode) {
+        for (int i = 0; i < drinkMenu.length; i++) {
+            if (drinkMenu[i][0].equals(drinkCode)) {
+                return drinkMenu[i][2];
+            }
+        }
+        return null; 
+    }
+    
+    public static void ProceedToCounter(){
+        System.out.println("         Please Proceed To Counter For Payment         ");
+        System.out.println("      Please Show Your Order Number To The Cashier     ");
+        System.out.println();
+        System.out.println("-------------- THANK YOU FOR VISITING US --------------");
+        System.out.println("------------------- HAVE A NICE DAY -------------------");
+        System.out.println("------------------- YOI ICHINICHI O -------------------");
+        System.out.println("-------------------- NEO-TOKIO CAFE -------------------");
+        System.out.println();
+
+    }
+    
+    public static void ExitOrderSystem(){
+        System.out.println("                   Your cart is empty                  ");
+        System.out.println("                    System is exited                   ");
+        System.out.println();
+        System.out.println("-------------- THANK YOU FOR VISITING US --------------");
+        System.out.println("------------------- HAVE A NICE DAY -------------------");
+        System.out.println("------------------- YOI ICHINICHI O -------------------");
+        System.out.println("-------------------- NEO-TOKIO CAFE -------------------");
+        System.out.println();
+    }
+    
+}
